@@ -3,10 +3,5 @@
 <h1>@Model.CurrentCategory</h1>
 @foreach (var part in Model.Parts)
 {
-    <div>
-        <h2>@part.Name</h2>
-        <h3>@part.Brand</h3>
-        <h3>@part.Price.ToString("c")</h3>
-        <h4>@part.Category.Name</h4>
-    </div>
+    <partial name="_PartCard" model="part" />
 }

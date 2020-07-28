@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 
 using AutoPartsShop.Interfaces;
@@ -32,6 +33,15 @@ namespace AutoPartsShop.Controllers
             partListViewModel.CurrentCategory = "On Sale";
 
             return View(partListViewModel);
+        }
+
+        public IActionResult Details(int id)
+        {
+            var part = _part.GetPartById(id);
+            if (part == null)
+                return NotFound();
+
+            return View(part);
         }
     }
 }

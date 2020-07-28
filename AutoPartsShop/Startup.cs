@@ -1,14 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 using AutoPartsShop.Interfaces;
+using AutoPartsShop.Models;
 using AutoPartsShop.Repositories;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -16,10 +14,24 @@ namespace AutoPartsShop
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
+        /// <summary>
+        /// Constructor to assign the configuration property value.
+        /// </summary>
+        /// <param name="configuration"></param>
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<AutoPartsShopDbContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("AutoPartsShopContext")));
+
             services.AddControllersWithViews();
             services.AddScoped<ICategory, CategoryRepository>();
             services.AddScoped<IPart, PartRepository>();
@@ -49,7 +61,7 @@ namespace AutoPartsShop
                 // Use this route options to route the application to the initial page desired.
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Part}/{action=List}/{Id?}"
+                    pattern: "{controller=Home}/{action=Index}/{id?}"
                     );
             });
         }

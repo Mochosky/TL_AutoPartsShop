@@ -7,27 +7,13 @@ namespace AutoPartsShop.Repositories
 {
     public class CategoryRepository : ICategory
     {
-        public IEnumerable<Category> GetCategories => new List<Category>
+        private readonly AutoPartsShopDbContext _autoPartsShopDbContext;
+
+        public CategoryRepository(AutoPartsShopDbContext autoPartsShopDbContext)
         {
-                new Category
-                {
-                    CategoryId=1,
-                    Name="Engine",
-                    Description="Engine related parts."
-                },
+            _autoPartsShopDbContext = autoPartsShopDbContext;
+        }
 
-                new Category
-                {
-                    CategoryId=2,
-                    Name="Suspension",
-                    Description="Suspension related parts."},
-
-                new Category
-                {
-                    CategoryId=3,
-                    Name="Brakes",
-                    Description="Braking system related parts."
-                }
-        };
+        public IEnumerable<Category> GetCategories => _autoPartsShopDbContext.Categories;
     }
 }
