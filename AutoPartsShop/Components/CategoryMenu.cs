@@ -8,9 +8,9 @@ namespace AutoPartsShop.Components
 {
     public class CategoryMenu : ViewComponent
     {
-        private readonly ICategory _category;
+        private readonly ICategoryRepository _category;
 
-        public CategoryMenu(ICategory category)
+        public CategoryMenu(ICategoryRepository category)
         {
             _category = category;
         }

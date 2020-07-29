@@ -4,7 +4,7 @@ using AutoPartsShop.Models;
 
 namespace AutoPartsShop.Interfaces
 {
-    public interface ICategory
+    public interface ICategoryRepository
     {
         IEnumerable<Category> GetCategories { get; }
     }

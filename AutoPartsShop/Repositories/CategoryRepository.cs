@@ -5,7 +5,7 @@ using AutoPartsShop.Models;
 
 namespace AutoPartsShop.Repositories
 {
-    public class CategoryRepository : ICategory
+    public class CategoryRepository : ICategoryRepository
     {
         private readonly AutoPartsShopDbContext _autoPartsShopDbContext;
 

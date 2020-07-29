@@ -4,14 +4,16 @@ using AutoPartsShop.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AutoPartsShop.Migrations
 {
     [DbContext(typeof(AutoPartsShopDbContext))]
-    partial class AutoPartsShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200729074916_FixingDecimalIssues2")]
+    partial class FixingDecimalIssues2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

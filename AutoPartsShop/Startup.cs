@@ -33,9 +33,10 @@ namespace AutoPartsShop
             options.UseSqlServer(Configuration.GetConnectionString("AutoPartsShopContext")));
 
             services.AddControllersWithViews();
-            services.AddScoped<ICategory, CategoryRepository>();
-            services.AddScoped<IPart, PartRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IPartRepository, PartRepository>();
             services.AddScoped<Cart>(c => Cart.GetCart(c));
+            services.AddScoped<IOrderRepository, OrderRepository>();
 
             services.AddHttpContextAccessor();
             services.AddSession();
@@ -57,12 +58,6 @@ namespace AutoPartsShop
 
             app.UseEndpoints(endpoints =>
             {
-                // TODO: Deletes the default map comming in the application and add a custom map pattern.
-                //endpoints.MapGet("/", async context =>
-                //{
-                //    await context.Response.WriteAsync("Hello World!");
-                //});
-
                 // Use this route options to route the application to the initial page desired.
                 endpoints.MapControllerRoute(
                     name: "default",

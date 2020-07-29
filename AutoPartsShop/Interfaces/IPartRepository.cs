@@ -4,7 +4,7 @@ using AutoPartsShop.Models;
 
 namespace AutoPartsShop.Interfaces
 {
-    public interface IPart
+    public interface IPartRepository
     {
         IEnumerable<Part> GetAllParts { get; }
         IEnumerable<Part> GetPartsOnSale { get; }

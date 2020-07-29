@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AutoPartsShop.Repositories
 {
-    public class PartRepository : IPart
+    public class PartRepository : IPartRepository
     {
         private readonly AutoPartsShopDbContext _autoPartsShopDbContext;
 

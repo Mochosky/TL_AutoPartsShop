@@ -4,14 +4,16 @@ using AutoPartsShop.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AutoPartsShop.Migrations
 {
     [DbContext(typeof(AutoPartsShopDbContext))]
-    partial class AutoPartsShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200729074514_AddingValidations")]
+    partial class AddingValidations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -144,7 +146,7 @@ namespace AutoPartsShop.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("OrderTotal")
-                        .HasColumnType("decimal(6,3)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
@@ -188,7 +190,7 @@ namespace AutoPartsShop.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(6,3)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");

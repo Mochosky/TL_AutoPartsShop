@@ -12,18 +12,18 @@ namespace AutoPartsShop.Controllers
 {
     public class PartController : Controller
     {
-        private readonly IPart _part;
-        private readonly ICategory _category;
+        private readonly IPartRepository _partRepository;
+        private readonly ICategoryRepository _categoryRepository;
 
-        public PartController(IPart part, ICategory category)
+        public PartController(IPartRepository part, ICategoryRepository category)
         {
-            _part = part;
-            _category = category;
+            _partRepository = part;
+            _categoryRepository = category;
         }
 
         public IActionResult Details(int id)
         {
-            var part = _part.GetPartById(id);
+            var part = _partRepository.GetPartById(id);
             if (part == null)
                 return NotFound();
 
@@ -37,14 +37,14 @@ namespace AutoPartsShop.Controllers
 
             if (string.IsNullOrEmpty(category))
             {
-                parts = _part.GetAllParts.OrderBy(p => p.PartId);
+                parts = _partRepository.GetAllParts.OrderBy(p => p.PartId);
                 currentcategory = "All Parts";
             }
             else
             {
-                parts = _part.GetAllParts
+                parts = _partRepository.GetAllParts
                     .Where(c => c.Category.Name == category);
-                currentcategory = _category.GetCategories
+                currentcategory = _categoryRepository.GetCategories
                     .FirstOrDefault(c => c.Name == category)?.Name;
             }
 

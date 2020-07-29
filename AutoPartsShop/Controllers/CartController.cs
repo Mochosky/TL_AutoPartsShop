@@ -10,12 +10,12 @@ namespace AutoPartsShop.Controllers
 {
     public class CartController : Controller
     {
-        private readonly IPart _part;
+        private readonly IPartRepository _partRepository;
         private readonly Cart _cart;
 
-        public CartController(IPart part, Cart cart)
+        public CartController(IPartRepository part, Cart cart)
         {
-            _part = part;
+            _partRepository = part;
             _cart = cart;
         }
 
@@ -34,7 +34,7 @@ namespace AutoPartsShop.Controllers
 
         public RedirectToActionResult AddToCart(int partId)
         {
-            var selectedPart = _part.GetAllParts.FirstOrDefault(p => p.PartId == partId);
+            var selectedPart = _partRepository.GetAllParts.FirstOrDefault(p => p.PartId == partId);
 
             if (selectedPart != null)
             {
@@ -46,7 +46,7 @@ namespace AutoPartsShop.Controllers
 
         public RedirectToActionResult RemoveFromCart(int partId)
         {
-            var selectedPart = _part.GetAllParts.FirstOrDefault(p => p.PartId == partId);
+            var selectedPart = _partRepository.GetAllParts.FirstOrDefault(p => p.PartId == partId);
 
             if (selectedPart != null)
             {

@@ -8,16 +8,18 @@ namespace AutoPartsShop.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IPart _part;
-        public HomeController(IPart part)
+        private readonly IPartRepository _partRepository;
+
+        public HomeController(IPartRepository part)
         {
-            _part = part;
+            _partRepository = part;
         }
+
         public IActionResult Index()
         {
             var homeViewModel = new HomeViewModel
             {
-                PartOnSale = _part.GetPartsOnSale
+                PartOnSale = _partRepository.GetPartsOnSale
             };
             return View(homeViewModel);
         }

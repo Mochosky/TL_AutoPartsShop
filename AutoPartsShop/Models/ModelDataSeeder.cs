@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 using Microsoft.EntityFrameworkCore;
 
 namespace AutoPartsShop.Models
@@ -13,6 +12,28 @@ namespace AutoPartsShop.Models
                 .Property(c => c.Created)
                 .HasDefaultValueSql("getdate()");
             modelBuilder.Entity<Category>()
+                .Property(c => c.Modified)
+                .HasDefaultValueSql("getdate()");
+
+            // Model Builder for Order Table, this contains special column values and configurations.
+            modelBuilder.Entity<Order>()
+               .Property(c => c.OrderTotal)
+               .HasColumnType("decimal(6,3)");
+            modelBuilder.Entity<Order>()
+                .Property(c => c.Created)
+                .HasDefaultValueSql("getdate()");
+            modelBuilder.Entity<Order>()
+                .Property(c => c.Modified)
+                .HasDefaultValueSql("getdate()");
+
+            // Model Builder for Order Detail Table, this contains special column values and configurations.
+            modelBuilder.Entity<OrderDetail>()
+               .Property(c => c.Price)
+               .HasColumnType("decimal(6,3)");
+            modelBuilder.Entity<OrderDetail>()
+                .Property(c => c.Created)
+                .HasDefaultValueSql("getdate()");
+            modelBuilder.Entity<OrderDetail>()
                 .Property(c => c.Modified)
                 .HasDefaultValueSql("getdate()");
 
@@ -36,7 +57,6 @@ namespace AutoPartsShop.Models
                 .HasDefaultValueSql("getdate()");
 
             // Model Builder for Part Table: This contains seed data values.
-            // TODO: Remove Created and Modified properties from the Seed Entities data.
             modelBuilder.Entity<Part>()
                 .HasData(
                 new Part
@@ -51,10 +71,7 @@ namespace AutoPartsShop.Models
                     IsOnSale = false,
                     ImageUrl = "\\images\\motorcraft-sparkplug.jpg",
                     ImageThumbnailUrl = "\\images\\thumbnails\\mini-motorcraft-sparkplug.jpg",
-                    //Created = DateTime.Now,
-                    //Modified = DateTime.Now
-                },
-                new Part
+                }, new Part
                 {
                     PartId = 2,
                     Name = "Gates (T343) Engine Timing Belt",
@@ -66,10 +83,7 @@ namespace AutoPartsShop.Models
                     IsOnSale = true,
                     ImageUrl = "\\images\\gates-timmingbelt.jpg",
                     ImageThumbnailUrl = "\\images\\thumbnails\\mini-gates-timmingbelt.jpg",
-                    //Created = DateTime.Now,
-                    //Modified = DateTime.Now
-                },
-                new Part
+                }, new Part
                 {
                     PartId = 3,
                     Name = "GMB 125-3300 OE Replacement Water Pump with Gasket",
@@ -81,8 +95,6 @@ namespace AutoPartsShop.Models
                     IsOnSale = true,
                     ImageUrl = "\\images\\gmb-waterpump.jpg",
                     ImageThumbnailUrl = "\\images\\thumbnails\\mini-gmb-waterpump.jpg",
-                    //Created = DateTime.Now,
-                    //Modified = DateTime.Now
                 },
                 new Part
                 {
@@ -96,8 +108,6 @@ namespace AutoPartsShop.Models
                     IsOnSale = true,
                     ImageUrl = "\\images\\gates-tensioner.jpg",
                     ImageThumbnailUrl = "\\images\\thumbnails\\mini-gates-tensioner.jpg",
-                    //Created = DateTime.Now,
-                    //Modified = DateTime.Now
                 },
                 new Part
                 {
@@ -115,8 +125,6 @@ namespace AutoPartsShop.Models
                     IsOnSale = true,
                     ImageUrl = "\\images\\map-coilsprings.jpg",
                     ImageThumbnailUrl = "\\images\\thumbnails\\mini-map-coilsprings.jpg",
-                    //Created = DateTime.Now,
-                    //Modified = DateTime.Now
                 },
                 new Part
                 {
@@ -130,8 +138,6 @@ namespace AutoPartsShop.Models
                     IsOnSale = true,
                     ImageUrl = "\\images\\kyb-strutboot.jpg",
                     ImageThumbnailUrl = "\\images\\thumbnails\\mini-kyb-strutboot.jpg",
-                    Created = DateTime.Now,
-                    Modified = DateTime.Now
                 },
                 new Part
                 {
@@ -145,8 +151,6 @@ namespace AutoPartsShop.Models
                     IsOnSale = true,
                     ImageUrl = "\\images\\hawk-brakepad.jpg",
                     ImageThumbnailUrl = "\\images\\thumbnails\\mini-hawk-brakepad.jpg",
-                    //Created = DateTime.Now,
-                    //Modified = DateTime.Now
                 },
                 new Part
                 {
@@ -160,8 +164,6 @@ namespace AutoPartsShop.Models
                     IsOnSale = true,
                     ImageUrl = "\\images\\bosch-quietcastdiscrotor.jpg",
                     ImageThumbnailUrl = "\\images\\thumbnails\\mini-bosch-quietcastdiscrotor.jpg",
-                    //Created = DateTime.Now,
-                    //Modified = DateTime.Now
                 },
                 new Part
                 {
@@ -175,8 +177,6 @@ namespace AutoPartsShop.Models
                     IsOnSale = false,
                     ImageUrl = "\\images\\bosch-quietcastbrakepads.jpg",
                     ImageThumbnailUrl = "\\images\\thumbnails\\mini-bosch-quietcastbrakepads.jpg",
-                    //Created = DateTime.Now,
-                    //Modified = DateTime.Now
                 },
                 new Part
                 {
@@ -190,8 +190,6 @@ namespace AutoPartsShop.Models
                     IsOnSale = true,
                     ImageUrl = "\\images\\hikari-ledheadlights.jpg",
                     ImageThumbnailUrl = "\\images\\thumbnails\\mini-hikari-ledheadlights.jpg",
-                    //Created = DateTime.Now,
-                    //Modified = DateTime.Now
                 });
         }
     }
