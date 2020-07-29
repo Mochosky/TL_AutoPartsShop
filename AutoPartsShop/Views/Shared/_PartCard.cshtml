@@ -1,15 +1,25 @@
 ﻿@model Part
 
-<div class="col-sm-4 col-lg-4 col-md-4 ">
-    <div class="thumbnail">
-        <img src="@Model.ImageThumbnailUrl" alt="image for shop." />
+<div class="col-lg-4 col-md-4 col-sm-4">
+    <div class="img-thumbnail">
+        <img src="@Model.ImageThumbnailUrl" alt="image for part shop." />
         <div class="caption">
             <h3 class="pull-right">@Model.Price.ToString("c")</h3>
             <h3>
                 <a asp-controller="Part" asp-action="Details" asp-route-id="@Model.PartId">@Model.Name</a>
             </h3>
-            <h3>@Model.Brand</h3>
+            <h4>@Model.Brand</h4>
             <p>@Model.Description</p>
+        </div>
+        <div class="addToCart">
+            <p class="button">
+                <a class="btn btn-primary"
+                   asp-controller="Cart"
+                   asp-action="AddToCart"
+                   asp-route-partId="@Model.PartId">
+                    Add to Cart
+                </a>
+            </p>
         </div>
     </div>
 </div>

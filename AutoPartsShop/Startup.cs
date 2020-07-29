@@ -35,6 +35,10 @@ namespace AutoPartsShop
             services.AddControllersWithViews();
             services.AddScoped<ICategory, CategoryRepository>();
             services.AddScoped<IPart, PartRepository>();
+            services.AddScoped<Cart>(c => Cart.GetCart(c));
+
+            services.AddHttpContextAccessor();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +52,7 @@ namespace AutoPartsShop
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSession();
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>

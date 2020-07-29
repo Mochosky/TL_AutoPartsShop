@@ -1,0 +1,12 @@
+﻿@model HomeViewModel
+
+<partial name="_Slide" />
+
+<h2>Part of The Week</h2>
+
+<div class="row">
+    @foreach (var part in @Model.PartOnSale)
+    {
+        <partial name="_PartCard" model="part" />
+    }
+</div>

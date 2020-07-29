@@ -4,9 +4,9 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
-    <link href="~/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
-    <script src="~/lib/twitter-bootstrap/js/bootstrap.js"></script>
+    <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
     <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.js"></script>
     <link href="~/content/site.css" rel="stylesheet" />
     <title>@ViewBag.Title</title>
 </head>
@@ -25,9 +25,9 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                        @*@await Component.InvokeAsync("CategoryMenu")*@
-                        <li><a asp-controller="Part" asp-action="List">All Parts</a></li>
-                        @*@await Component.InvokeAsync("ShoppingCartSummary")*@
+                        @await Component.InvokeAsync("CategoryMenu")
+                        <li><a asp-controller="Contact" asp-action="Index">Contact</a></li>
+                        @await Component.InvokeAsync("CartSummary")
                         @*<partial name="_LoginPartial" />*@
                     </ul>
                 </div>

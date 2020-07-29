@@ -1,10 +1,9 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading.Tasks;
 
 using AutoPartsShop.Interfaces;
+using AutoPartsShop.Models;
 using AutoPartsShop.ViewModels;
 
 using Microsoft.AspNetCore.Mvc;
@@ -22,19 +21,6 @@ namespace AutoPartsShop.Controllers
             _category = category;
         }
 
-        public IActionResult List()
-        {
-            // TODO: Remove the ViewBag and return the View Model instead of View.
-            //ViewBag.ActualCategory = "On Sale";
-            //return View(_part.GetAllParts);
-
-            var partListViewModel = new PartListViewModel();
-            partListViewModel.Parts = _part.GetAllParts;
-            partListViewModel.CurrentCategory = "On Sale";
-
-            return View(partListViewModel);
-        }
-
         public IActionResult Details(int id)
         {
             var part = _part.GetPartById(id);
@@ -42,6 +28,31 @@ namespace AutoPartsShop.Controllers
                 return NotFound();
 
             return View(part);
+        }
+
+        public ViewResult List(string category)
+        {
+            IEnumerable<Part> parts;
+            string currentcategory;
+
+            if (string.IsNullOrEmpty(category))
+            {
+                parts = _part.GetAllParts.OrderBy(p => p.PartId);
+                currentcategory = "All Parts";
+            }
+            else
+            {
+                parts = _part.GetAllParts
+                    .Where(c => c.Category.Name == category);
+                currentcategory = _category.GetCategories
+                    .FirstOrDefault(c => c.Name == category)?.Name;
+            }
+
+            return View(new PartListViewModel
+            {
+                CurrentCategory = currentcategory,
+                Parts = parts
+            });
         }
     }
 }

@@ -1,0 +1,32 @@
+﻿@model CartViewModel
+
+<h2>Shopping Cart: Car Parts to buy.</h2>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Quantity</th>
+            <th>Item</th>
+            <th class="text-right">Price</th>
+            <th class="text-right">Subtotal</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Cart.CartItems)
+        {
+            <tr>
+                <td class="text-center">@item.Quantity</td>
+                <td class="text-left">@item.Part.Name</td>
+                <td class="text-right">@item.Part.Price.ToString("c")</td>
+                <td class="text-right">
+                    @((item.Quantity*item.Part.Price).ToString("c"))
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" class="text-right">Final Price:</td>
+            <td class="text-right">@Model.CartPrice.ToString("c")</td>
+        </tr>
+    </tfoot>
+</table>
