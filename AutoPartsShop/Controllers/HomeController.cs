@@ -15,6 +15,10 @@ namespace AutoPartsShop.Controllers
             _partRepository = part;
         }
 
+        /// <summary>
+        /// Landing Page action result.
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Index()
         {
             var homeViewModel = new HomeViewModel

@@ -2,6 +2,9 @@
 
 namespace AutoPartsShop.Models
 {
+    /// <summary>
+    /// Model with the Orde Detail object and properties.
+    /// </summary>
     public class OrderDetail : BaseEntity
     {
         [Key]

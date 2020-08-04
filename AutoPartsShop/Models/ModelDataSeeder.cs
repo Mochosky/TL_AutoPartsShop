@@ -3,6 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AutoPartsShop.Models
 {
+    /// <summary>
+    /// This class contains the special properties fields and initial seed data.
+    /// </summary>
     public static class ModelDataSeeder
     {
         public static void DataSeed(this ModelBuilder modelBuilder)

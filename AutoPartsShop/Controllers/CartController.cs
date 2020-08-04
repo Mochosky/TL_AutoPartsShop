@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AutoPartsShop.Controllers
 {
+
     public class CartController : Controller
     {
         private readonly IPartRepository _partRepository;
@@ -19,6 +20,10 @@ namespace AutoPartsShop.Controllers
             _cart = cart;
         }
 
+        /// <summary>
+        /// Initial view result for Shopping Cart.
+        /// </summary>
+        /// <returns></returns>
         public ViewResult Index()
         {
             _cart.CartItems = _cart.GetCartItems();
@@ -32,6 +37,11 @@ namespace AutoPartsShop.Controllers
             return View(cartViewModel);
         }
 
+        /// <summary>
+        /// Redirect to add items in the Shopping Cart and update it.
+        /// </summary>
+        /// <param name="partId"></param>
+        /// <returns></returns>
         public RedirectToActionResult AddToCart(int partId)
         {
             var selectedPart = _partRepository.GetAllParts.FirstOrDefault(p => p.PartId == partId);
@@ -44,6 +54,11 @@ namespace AutoPartsShop.Controllers
             return RedirectToAction("Index");
         }
 
+        /// <summary>
+        /// Redirect to remove items from the Shopping Cart and update it.
+        /// </summary>
+        /// <param name="partId"></param>
+        /// <returns></returns>
         public RedirectToActionResult RemoveFromCart(int partId)
         {
             var selectedPart = _partRepository.GetAllParts.FirstOrDefault(p => p.PartId == partId);

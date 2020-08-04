@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AutoPartsShop.Models
 {
+    /// <summary>
+    /// Model with the Category object and properties.
+    /// </summary>
     public class Category : BaseEntity
     {
         [Key]

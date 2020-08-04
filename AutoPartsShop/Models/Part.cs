@@ -2,6 +2,9 @@
 
 namespace AutoPartsShop.Models
 {
+    /// <summary>
+    /// Model with the Part object and properties.
+    /// </summary>
     public class Part : BaseEntity
     {
         [Key]

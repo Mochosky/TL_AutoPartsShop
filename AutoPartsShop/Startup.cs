@@ -70,6 +70,11 @@ namespace AutoPartsShop
             MigrateAndSeedData(serviceProvider);
         }
 
+        /// <summary>
+        /// Service provider to have the database updated and the migrations ran in te execution.
+        /// </summary>
+        /// <param name="serviceProvider"></param>
+        /// <returns></returns>
         public static IServiceProvider MigrateAndSeedData(IServiceProvider serviceProvider)
         {
             using var context = serviceProvider.GetService<AutoPartsShopDbContext>();
@@ -77,6 +82,7 @@ namespace AutoPartsShop
             if (!context.Database.CanConnect())
                 return serviceProvider;
 
+            // Run DB migration.
             context.Database.Migrate();
 
             return serviceProvider;

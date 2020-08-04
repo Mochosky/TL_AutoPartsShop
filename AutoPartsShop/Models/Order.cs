@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace AutoPartsShop.Models
 {
+    /// <summary>
+    /// Model with the Order object and properties.
+    /// </summary>
     public class Order : BaseEntity
     {
         [Key]

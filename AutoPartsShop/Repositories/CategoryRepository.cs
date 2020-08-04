@@ -5,6 +5,9 @@ using AutoPartsShop.Models;
 
 namespace AutoPartsShop.Repositories
 {
+    /// <summary>
+    /// Contains the repository for the Part Categories.
+    /// </summary>
     public class CategoryRepository : ICategoryRepository
     {
         private readonly AutoPartsShopDbContext _autoPartsShopDbContext;

@@ -19,6 +19,11 @@ namespace AutoPartsShop.Models
             _autoPartsShopDbContext = autoPartsShopDbContext;
         }
 
+        /// <summary>
+        /// Method to generate the Cart.
+        /// </summary>
+        /// <param name="serviceProvider"></param>
+        /// <returns></returns>
         public static Cart GetCart(IServiceProvider serviceProvider)
         {
             ISession session = serviceProvider.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
@@ -30,6 +35,11 @@ namespace AutoPartsShop.Models
             return new Cart(context) { CartId = cartId };
         }
 
+        /// <summary>
+        /// Method to add items to the Cart.
+        /// </summary>
+        /// <param name="part"></param>
+        /// <param name="quantity"></param>
         public void AddToCart(Part part, int quantity)
         {
             var cartItem = _autoPartsShopDbContext.CartItems
@@ -54,6 +64,11 @@ namespace AutoPartsShop.Models
             _autoPartsShopDbContext.SaveChanges();
         }
 
+        /// <summary>
+        /// Method to remove items form the Cart.
+        /// </summary>
+        /// <param name="part"></param>
+        /// <returns></returns>
         public int RemoveFromCart(Part part)
         {
             var cartItem = _autoPartsShopDbContext.CartItems
@@ -77,6 +92,10 @@ namespace AutoPartsShop.Models
             return itemQuantity;
         }
 
+        /// <summary>
+        /// Method to get the shopping Cart Items.
+        /// </summary>
+        /// <returns></returns>
         public List<CartItem> GetCartItems()
         {
             return CartItems ?? (CartItems = _autoPartsShopDbContext.CartItems
@@ -85,6 +104,9 @@ namespace AutoPartsShop.Models
                 .ToList());
         }
 
+        /// <summary>
+        /// Method to clean the Cart after the order completes.
+        /// </summary>
         public void ClearCart()
         {
             var carItems = _autoPartsShopDbContext.CartItems.Where(c => c.CartId == CartId);
@@ -93,6 +115,10 @@ namespace AutoPartsShop.Models
             _autoPartsShopDbContext.SaveChanges();
         }
 
+        /// <summary>
+        /// Method to get all the Cart price to bill.
+        /// </summary>
+        /// <returns></returns>
         public decimal GetCartPrice()
         {
             var price = _autoPartsShopDbContext.CartItems.Where(c => c.CartId == CartId)

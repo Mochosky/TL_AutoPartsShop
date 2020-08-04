@@ -1,5 +1,8 @@
 ﻿namespace AutoPartsShop.Models
 {
+    /// <summary>
+    /// Model with the Cart Item object and properties.
+    /// </summary>
     public class CartItem
     {
         public int CartItemId { get; set; }

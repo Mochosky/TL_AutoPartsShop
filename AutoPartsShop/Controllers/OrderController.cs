@@ -17,11 +17,20 @@ namespace AutoPartsShop.Controllers
             _cart = cart;
         }
 
+        /// <summary>
+        /// Checkout order.
+        /// </summary>
+        /// <returns></returns>
         public IActionResult CheckOut()
         {
             return View();
         }
 
+        /// <summary>
+        /// Post to checkout order.
+        /// </summary>
+        /// <param name="order"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Checkout(Order order)
         {
@@ -30,6 +39,7 @@ namespace AutoPartsShop.Controllers
             if (_cart.CartItems.Count == 0)
                 ModelState.AddModelError("", "Your cart is empty!");
 
+            // Verify the Order form validations and then continue the Checkout process.
             if (ModelState.IsValid)
             {
                 _orderRepository.CreateOrder(order);
@@ -41,6 +51,10 @@ namespace AutoPartsShop.Controllers
             return View(order);
         }
 
+        /// <summary>
+        /// Action result to complete the order.
+        /// </summary>
+        /// <returns></returns>
         public IActionResult CheckoutComplete()
         {
             ViewBag.CheckoutCompleteMsg = "Thank you for your purchase.";
