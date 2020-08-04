@@ -28,6 +28,12 @@
                         @await Component.InvokeAsync("CategoryMenu")
                         <li><a asp-controller="Contact" asp-action="Index">Contact</a></li>
                         @await Component.InvokeAsync("CartSummary")
+                        <li>
+                            <form action="@Url.Action("Search", "Part")" method="get">
+                                <input type="text" name="criteria" />
+                                <button type="submit" class="button"></button>
+                            </form>
+                        </li>
                         @*<partial name="_LoginPartial" />*@
                     </ul>
                 </div>

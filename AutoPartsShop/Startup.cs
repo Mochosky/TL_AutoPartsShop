@@ -1,4 +1,6 @@
 
+using System;
+
 using AutoPartsShop.Interfaces;
 using AutoPartsShop.Models;
 using AutoPartsShop.Repositories;
@@ -43,7 +45,7 @@ namespace AutoPartsShop
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -64,6 +66,20 @@ namespace AutoPartsShop
                     pattern: "{controller=Home}/{action=Index}/{id?}"
                     );
             });
+
+            MigrateAndSeedData(serviceProvider);
+        }
+
+        public static IServiceProvider MigrateAndSeedData(IServiceProvider serviceProvider)
+        {
+            using var context = serviceProvider.GetService<AutoPartsShopDbContext>();
+
+            if (!context.Database.CanConnect())
+                return serviceProvider;
+
+            context.Database.Migrate();
+
+            return serviceProvider;
         }
     }
 }

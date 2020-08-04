@@ -54,5 +54,17 @@ namespace AutoPartsShop.Controllers
                 Parts = parts
             });
         }
+
+        public ViewResult Search(string criteria)
+        {
+            var parts = _partRepository.GetAllParts
+                .Where(p => p.Name.Contains(criteria, System.StringComparison.InvariantCultureIgnoreCase));
+
+            return View("List", new PartListViewModel
+            {
+                CurrentCategory = criteria,
+                Parts = parts
+            });
+        }
     }
 }
